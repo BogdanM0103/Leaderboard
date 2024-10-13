@@ -1,14 +1,15 @@
-from tools import generateID
+from tools import generateID, ID_FILE, assign_randon_name
+
 
 class Player:
     def __init__(self, name):
-        self.name = name
-        self.id = generateID()
+        self.name = assign_randon_name()
+        self.id = generateID(ID_FILE)
         self.kills = 0
         self.assists = 0
         self.deaths = 0
 
-    def set_name(self):
+    # def set_name(self):
 
 
     def __str__(self):

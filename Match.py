@@ -6,7 +6,6 @@ class Match:
         self.winner = None
         self.loser = None
 
-
     def set_winner(self, team_1, team_2):
         if self.team_1.status == self.team_2.status == "win" or self.team_1.status == self.team_2.status == "loss":
             raise ValueError(f"Both teams have status ${self.team_1.status}")

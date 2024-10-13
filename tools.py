@@ -1,25 +1,66 @@
 import random
-import os
 
-ID_FILE = "generated_ids.txt"
-NAME_FILE = "usernames_list.txt"
+ID_FILE = "ids.txt"
+NAMES_FILE = "names_dataset.txt"
 
-def load_generated_ids():
-    if os.path.exists(ID_FILE):
-        with open(ID_FILE, "r") as file:
-            return {int(line.strip()) for line in file}
-    return set()
+def generateID(file_path):
+    existing_ids = set()
 
-def save_generated_id(new_id):
-    with open(ID_FILE, "a") as file:
-        file.write(f"{new_id}\n")
+    try:
+        with open(file_path, "r") as file:
+            for line in file:
+                stripped_line = line.strip()
+                if stripped_line:  # Skip empty lines
+                    existing_ids.add(int(stripped_line))
+    except FileNotFoundError:
+        pass
 
-list_id = load_generated_ids()
-list_names = load_names()
-def generateID():
     while True:
         new_id = random.randint(100000, 999999)
-        if new_id not in list_id:
-            list_id.add(new_id)
-            save_generated_id(new_id)
+        if new_id not in existing_ids:
+            with open(file_path, "a") as file:
+                file.write(f"{new_id}\n")  # Corrected the newline character
             return new_id
+
+def load_names(file_path):
+    names_list = set()
+
+    try:
+        with open(file_path, "r") as file:
+            for line in file:
+                stripped_line = line.strip()
+                if stripped_line:
+                    names_list.add(stripped_line)
+            return names_list
+    except FileNotFoundError:
+        pass
+
+def assign_randon_name():
+    names_dataset = "names_dataset.txt"
+    names_used = "names_inuse.txt"
+
+    try:
+        with open(names_dataset, "r") as file:
+            available_names = set(line.strip() for line in file if line.strip())
+    except FileNotFoundError:
+        print(f"File {names_dataset} not found!")
+        return None
+
+    used_names = set()
+    try:
+        with open(names_used, "r") as file:
+            used_names = set(line.strip() for line in file if line.strip())
+    except FileNotFoundError:
+        print(f"File {names_used} not found!")
+        return None
+
+    unused_names = available_names - used_names
+    if not unused_names:
+        print(f"No available names left")
+        return None
+
+    chosen_name = random.choice(list(unused_names))
+    with open(names_used, "a") as file:
+        file.write(f"{chosen_name}\n")
+
+    return chosen_name
