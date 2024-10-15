@@ -1,3 +1,4 @@
+import os
 from pickle import FALSE, TRUE
 
 
@@ -16,6 +17,13 @@ class Team:
             print(f"Team is already full.\n")
         else:
             self.players_id.append(player.id)
+
+    def generate_random_team(self):
+        folder_path = "data/teams/"
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+        # work in progress
+
 
     def set_status(self, is_winner):
         if is_winner == "win":

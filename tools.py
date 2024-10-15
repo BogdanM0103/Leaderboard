@@ -1,3 +1,4 @@
+import os
 import random
 
 NAMES_FILE = "names_dataset.txt"
@@ -58,4 +59,3 @@ def assign_random_name():
     with open(names_used, "a") as file:
         file.write(f"{chosen_name}\n")
     return chosen_name
-
