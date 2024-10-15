@@ -7,6 +7,7 @@ class Player:
         self.id = generateID()
         self.write_player_file()
 
+    # This is for creating a file with user information
     def write_player_file(self):
         folder_path = "data/players"
         if not os.path.exists(folder_path):

@@ -23,12 +23,6 @@ class Team:
                 self.players.append(player)
             self.players.append(player.id)
 
-    def generate_random_team(self):
-        folder_path = "data/teams/"
-        if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
-        # work in progress
-
     # Setter for the status of the team
     def set_status(self, is_winner):
         if is_winner == "win":

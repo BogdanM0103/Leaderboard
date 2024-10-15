@@ -7,6 +7,7 @@ class Match:
         self.loser = None
 
     def set_winner(self, team_1, team_2):
+        # Check if both teams have equal status
         if self.team_1.status == self.team_2.status == "win" or self.team_1.status == self.team_2.status == "loss":
             raise ValueError(f"Both teams have status ${self.team_1.status}")
         elif self.team_1.status == "win":
@@ -15,3 +16,7 @@ class Match:
         elif self.team_2.status == "win":
             self.winner = team_2
             self.loser = team_1
+
+    def generate_random_team(self):
+        team = []
+
