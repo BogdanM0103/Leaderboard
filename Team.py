@@ -9,14 +9,19 @@ class Team:
         if name not in self.NAME:
             raise ValueError(f"Invalid Team Name ${name}. It must be 'red' or 'blue'.\n")
         self.name = name
-        self.players_id = []
+        self.players = []
         self.status = ""
 
+    # Adds player
     def add_player(self, player):
-        if(len(self.players_id) >= 5):
+        # Checks if there is already enough players
+        if len(self.players) >= 5 :
             print(f"Team is already full.\n")
         else:
-            self.players_id.append(player.id)
+            # Checks if the player hasn't already been added to the team
+            if player not in self.players:
+                self.players.append(player)
+            self.players.append(player.id)
 
     def generate_random_team(self):
         folder_path = "data/teams/"
@@ -24,13 +29,14 @@ class Team:
             os.makedirs(folder_path)
         # work in progress
 
-
+    # Setter for the status of the team
     def set_status(self, is_winner):
         if is_winner == "win":
             self.status = "win"
         else:
             self.status = "loss"
 
+    # Getter for status of the team
     def get_status(self):
         return self.status
 

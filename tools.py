@@ -1,12 +1,17 @@
 import os
 import random
 
+# This is where the dataset of names is store
 NAMES_FILE = "names_dataset.txt"
 
+# function to generate unique id's
 def generateID():
+    # the file where id's are written upon creation
     ID_FILE = "ids.txt"
 
+    # the set that stores existing id's
     existing_ids = set()
+    # Adding the existing id's to the set for further use
     try:
         with open(ID_FILE, "r") as file:
             for line in file:
@@ -15,6 +20,7 @@ def generateID():
                     existing_ids.add(int(stripped_line))
     except FileNotFoundError:
         pass
+    # Loop that generates id's
     while True:
         new_id = random.randint(100000, 999999)
         if new_id not in existing_ids:
