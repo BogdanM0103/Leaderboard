@@ -66,5 +66,4 @@ def assign_random_name():
         file.write(f"{chosen_name}\n")
     return chosen_name
 
-def choose_random_player():
     
