@@ -5,9 +5,9 @@ import random
 NAMES_FILE = "names_dataset.txt"
 
 # function to generate unique id's
-def generateID():
+def generateID(forWhat):
     # the file where id's are written upon creation
-    ID_FILE = "ids.txt"
+    ID_FILE = "ids_players.txt" if forWhat == "player" else "ids_teams.txt"
 
     # the set that stores existing id's
     existing_ids = set()
