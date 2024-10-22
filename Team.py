@@ -1,8 +1,33 @@
 import json
 import os
+import random
 from pickle import FALSE, TRUE
 
-from tools import generateID
+from tools import generateID, config
+
+
+def generate_random_team():
+    available_players = []
+
+    # Load players from directory
+    players_folder_path = config['players_folder_path']
+    for filename in os.listdir(players_folder_path):
+        if filename.endswith(".json"):
+            file_path = os.path.join(players_folder_path, filename)
+            with open(file_path, 'r') as file:
+                player_data = json.load(file)
+                # Instead of creating a new player object, just append the data
+                available_players.append(player_data)
+    # Check if there are enough players for a team
+    if len(available_players) < 5:
+        raise ValueError("Too few players to form a team")
+    # Select 5 unique players
+    selected_players = random.sample(available_players, 5)
+    # Store selected players
+    #self.players.extend(selected_players)
+
+    # Return the selected players
+    return selected_players
 
 
 class Team:
@@ -14,8 +39,8 @@ class Team:
         self.name = "red"
         if self.name not in self.NAME:
             raise ValueError(f"Invalid Team Name ${self.name}. It must be 'red' or 'blue'.\n")
-        self.players = []
-        self.status = ""
+        self.players = generate_random_team()
+        self.status = self.set_random_status()
         self.write_team_file()
 
     # Adds player
@@ -48,11 +73,8 @@ class Team:
 
 
     # Setter for the status of the team
-    def set_status(self, is_winner):
-        if is_winner == "win":
-            self.status = "win"
-        else:
-            self.status = "loss"
+    def set_random_status(self):
+        return random.choice(['win', 'loss'])
 
     # Getter for status of the team
     def get_status(self):

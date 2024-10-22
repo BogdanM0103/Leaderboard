@@ -1,5 +1,7 @@
 import json
 import os
+import random
+
 from tools import generateID, assign_random_name
 
 class Player:
