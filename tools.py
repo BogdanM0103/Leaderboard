@@ -1,13 +1,22 @@
+import json
 import os
 import random
+from lib2to3.fixes.fix_asserts import NAMES
+
+# Load configuration from config.json
+with open('data/config.json', "r") as config_file:
+    config = json.load(config_file)
 
 # This is where the dataset of names is store
-NAMES_FILE = "names_dataset.txt"
+NAMES_DATASET_PATH = config['names_dataset_path']
+ID_PLAYERS_PATH = config['id_players_path']
+ID_TEAMS_PATH = config['id_teams_path']
+NAMES_USED_PATH = config['names_used_path']
 
 # function to generate unique id's
 def generateID(forWhat):
     # the file where id's are written upon creation
-    ID_FILE = "ids_players.txt" if forWhat == "player" else "ids_teams.txt"
+    ID_FILE = ID_PLAYERS_PATH if forWhat == "player" else ID_TEAMS_PATH
 
     # the set that stores existing id's
     existing_ids = set()
@@ -42,8 +51,8 @@ def load_names(file_path):
         pass
 
 def assign_random_name():
-    names_dataset = "names_dataset.txt"
-    names_used = "names_inuse.txt"
+    names_dataset = NAMES_DATASET_PATH
+    names_used = NAMES_USED_PATH
     try:
         with open(names_dataset, "r") as file:
             available_names = set(line.strip() for line in file if line.strip())
