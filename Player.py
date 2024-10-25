@@ -2,12 +2,13 @@ import json
 import os
 import random
 
+from EntityBase import EntityBase
 from tools import generate_id, assign_random_name
 
-class Player:
+class Player(EntityBase):
     def __init__(self):
+        super().__init__(entity_type = "player")
         self.name = assign_random_name()
-        self.id = generate_id(for_what="player")
         self.write_player_file()
 
     def to_dict(self):
@@ -25,9 +26,3 @@ class Player:
         with open(file_path, "w", encoding = "utf-8") as file:  # Changed from folder_path to file_path
             json.dump(self.to_dict(), file, indent = 4)
         print(f"Wrote player file for {self.get_id()} to {file_path}\n")
-
-    def __str__(self):
-        return f"{self.name}: {self.id}"
-
-    def get_id(self):
-        return self.id
