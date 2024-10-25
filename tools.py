@@ -14,9 +14,9 @@ ID_TEAMS = config['id_teams']
 NAMES_USED = config['names_used']
 
 # function to generate unique id's
-def generate_id(forWhat):
+def generate_id(for_what):
     # the file where id's are written upon creation
-    ID_FILE = ID_PLAYERS if forWhat == "player" else ID_TEAMS
+    ID_FILE = ID_PLAYERS if for_what == "player" else ID_TEAMS
 
     # the set that stores existing id's
     existing_ids = set()

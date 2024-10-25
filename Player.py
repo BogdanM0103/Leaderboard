@@ -7,7 +7,7 @@ from tools import generate_id, assign_random_name
 class Player:
     def __init__(self):
         self.name = assign_random_name()
-        self.id = generate_id(forWhat ="player")
+        self.id = generate_id(for_what="player")
         self.write_player_file()
 
     def to_dict(self):

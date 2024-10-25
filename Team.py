@@ -10,7 +10,7 @@ class Team:
     NAME = ["red", "blue"]
 
     def __init__(self):
-        self.id = generate_id(forWhat ="team")
+        self.id = generate_id(for_what="team")
 
         self.name = random.choice(Team.NAME)
         if self.name not in self.NAME:
