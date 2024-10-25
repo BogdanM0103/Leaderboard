@@ -1,8 +1,8 @@
 {
-  "names_dataset_path": "data/names_dataset.txt",
-  "names_used_path": "data/names_used.txt",
-  "id_players_path": "data/id_players.txt",
-  "id_teams_path": "data/id_teams.txt",
-  "players_folder_path": "data/players",
-  "teams_folder_path": "data/teams"
+  "names_dataset": "data/names_dataset.txt",
+  "names_used": "data/names_used.txt",
+  "id_players": "data/id_players.txt",
+  "id_teams": "data/id_teams.txt",
+  "players_folder": "data/players",
+  "teams_folder": "data/teams"
 }

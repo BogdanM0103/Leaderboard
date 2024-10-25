@@ -8,13 +8,13 @@ with open('data/config.json', "r") as config_file:
     config = json.load(config_file)
 
 # This is where the dataset of names is store
-NAMES_DATASET_PATH = config['names_dataset_path']
-ID_PLAYERS_PATH = config['id_players_path']
-ID_TEAMS_PATH = config['id_teams_path']
-NAMES_USED_PATH = config['names_used_path']
+NAMES_DATASET_PATH = config['names_dataset']
+ID_PLAYERS_PATH = config['id_players']
+ID_TEAMS_PATH = config['id_teams']
+NAMES_USED_PATH = config['names_used']
 
 # function to generate unique id's
-def generateID(forWhat):
+def generate_id(forWhat):
     # the file where id's are written upon creation
     ID_FILE = ID_PLAYERS_PATH if forWhat == "player" else ID_TEAMS_PATH
 

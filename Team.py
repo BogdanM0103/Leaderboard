@@ -3,17 +3,17 @@ import os
 import random
 from pickle import FALSE, TRUE
 
-from tools import generateID, config
+from tools import generate_id, config
 
 
 def generate_random_team():
     available_players = []
 
     # Load players from directory
-    players_folder_path = config['players_folder_path']
-    for filename in os.listdir(players_folder_path):
+    players_folder = config['players_folder']
+    for filename in os.listdir(players_folder):
         if filename.endswith(".json"):
-            file_path = os.path.join(players_folder_path, filename)
+            file_path = os.path.join(players_folder, filename)
             with open(file_path, 'r') as file:
                 player_data = json.load(file)
                 # Instead of creating a new player object, just append the data
@@ -34,7 +34,7 @@ class Team:
     NAME = ["red", "blue"]
 
     def __init__(self):
-        self.id = generateID(forWhat = "team")
+        self.id = generate_id(forWhat ="team")
 
         self.name = "red"
         if self.name not in self.NAME:
