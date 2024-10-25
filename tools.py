@@ -8,15 +8,15 @@ with open('data/config.json', "r") as config_file:
     config = json.load(config_file)
 
 # This is where the dataset of names is store
-NAMES_DATASET_PATH = config['names_dataset']
-ID_PLAYERS_PATH = config['id_players']
-ID_TEAMS_PATH = config['id_teams']
-NAMES_USED_PATH = config['names_used']
+NAMES_DATASET = config['names_dataset']
+ID_PLAYERS = config['id_players']
+ID_TEAMS = config['id_teams']
+NAMES_USED = config['names_used']
 
 # function to generate unique id's
 def generate_id(forWhat):
     # the file where id's are written upon creation
-    ID_FILE = ID_PLAYERS_PATH if forWhat == "player" else ID_TEAMS_PATH
+    ID_FILE = ID_PLAYERS if forWhat == "player" else ID_TEAMS
 
     # the set that stores existing id's
     existing_ids = set()
@@ -51,8 +51,8 @@ def load_names(file_path):
         pass
 
 def assign_random_name():
-    names_dataset = NAMES_DATASET_PATH
-    names_used = NAMES_USED_PATH
+    names_dataset = NAMES_DATASET
+    names_used = NAMES_USED
     try:
         with open(names_dataset, "r") as file:
             available_names = set(line.strip() for line in file if line.strip())
