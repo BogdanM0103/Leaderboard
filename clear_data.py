@@ -2,7 +2,7 @@ import os
 
 from tools import config
 
-def clear_directory(directory):
+def clear_folder(directory):
     # Clear files in the Folder
     if os.path.exists(directory):
         for filename in os.listdir(directory):
@@ -18,17 +18,17 @@ def clear_file(file):
         print(f"Cleared {file} file")
 
 def clear_data():
-    players_folder = config['players_folder_path']
-    teams_folder = config['teams_folder_path']
-    names_used_file = config['names_used_path']
-    id_players_file = config['id_players_path']
-    id_teams_file = config['id_teams_path']
+    players_folder = config['players_folder']
+    teams_folder = config['teams_folder']
+    names_used_file = config['names_used']
+    id_players_file = config['id_players']
+    id_teams_file = config['id_teams']
 
     # Clear files in the Players Folder
-    clear_directory(players_folder)
-    clear_directory(teams_folder)
+    for folder in [players_folder, teams_folder]:
+        clear_folder(folder)
 
     # Clear names_used, id_players, id_teams
     for filename in [names_used_file, id_players_file, id_teams_file]:
-        clear_file(names_used_file)
+        clear_file(filename)
 clear_data()
