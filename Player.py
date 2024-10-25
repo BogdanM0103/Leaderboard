@@ -11,13 +11,14 @@ class Player(EntityBase):
         self.name = assign_random_name()
         self.write_player_file()
 
+    """
     def to_dict(self):
         return {
             "player_id": self.id,
             "player_name": self.name
         }
+    """
 
-    # This is for creating a file with user information
     def write_player_file(self):
         folder_path = "data/players"
         if not os.path.exists(folder_path):
