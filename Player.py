@@ -7,23 +7,17 @@ from tools import generate_id, assign_random_name
 
 class Player(EntityBase):
     def __init__(self):
-        super().__init__(entity_type = "player")
         self.name = assign_random_name()
-        self.write_player_file()
+        super().__init__(entity_type = "player")
 
-    """
-    def to_dict(self):
-        return {
-            "player_id": self.id,
-            "player_name": self.name
-        }
-    """
 
-    def write_player_file(self):
+
+
+    """def write_player_file(self):
         folder_path = "data/players"
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
         file_path = os.path.join(folder_path, f"{self.get_id()}.json")
         with open(file_path, "w", encoding = "utf-8") as file:  # Changed from folder_path to file_path
             json.dump(self.to_dict(), file, indent = 4)
-        print(f"Wrote player file for {self.get_id()} to {file_path}\n")
+        print(f"Wrote player file for {self.get_id()} to {file_path}\n")"""

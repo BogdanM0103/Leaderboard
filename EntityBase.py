@@ -21,6 +21,15 @@ class EntityBase(ABC):
                 base_dict.update({
                     "player_name": getattr(self, "name", "Unknown"),
                 })
+            case "team":
+                base_dict.update({
+                    "team_name": getattr(self, "name", "Unknown"),
+                    "team_players": [
+                        player.to_dict() if hasattr(player, "to_dict") else player
+                        for player in getattr(self, "players", [])
+                    ],
+                    "team_status": getattr(self, "status", ""),
+                })
         return base_dict
 
     def write_file(self):
