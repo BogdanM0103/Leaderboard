@@ -10,8 +10,10 @@ class EntityBase(ABC):
         self.id = generate_id(for_what = entity_type)
         self.entity_type = entity_type
         self.write_file()
+
     def get_id(self):
         return self.id
+
     def to_dict(self):
         base_dict = {
             f"{self.entity_type}_id": self.id,
@@ -29,6 +31,13 @@ class EntityBase(ABC):
                         for player in getattr(self, "players", [])
                     ],
                     "team_status": getattr(self, "status", ""),
+                })
+            case "match":
+                base_dict.update({
+                    "team_1": getattr(self, "team_1", "Unknown"),
+                    "team_2": getattr(self, "team_2", "Unknown"),
+                    "winner": getattr(self, "winner", "Unknown"),
+                    "loser": getattr(self, "loser", "Unknown"),
                 })
         return base_dict
 

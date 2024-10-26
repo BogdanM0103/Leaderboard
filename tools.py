@@ -1,7 +1,6 @@
 import json
 import os
 import random
-from lib2to3.fixes.fix_asserts import NAMES
 
 # Load configuration from config.json
 with open('data/config.json', "r") as config_file:

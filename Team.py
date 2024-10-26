@@ -1,7 +1,4 @@
-import json
-import os
 import random
-from pickle import FALSE, TRUE
 
 from EntityBase import EntityBase
 from tools import generate_id, config, generate_random_team
@@ -28,24 +25,6 @@ class Team(EntityBase):
             if player not in self.players:
                 self.players.append(player)
             self.players.append(player.id)
-
-    """def to_dict(self):
-        return {
-            "team_id": self.id,
-            "team_name": self.name,
-            "team_players": self.players,
-            "team_status": self.status
-        }"""
-
-    """def write_team_file(self):
-        folder_path = "data/teams"
-        if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
-        file_path = os.path.join(folder_path, f"{self.get_id()}.json")
-        with open(file_path, "w", encoding = "utf-8") as file:  # Changed from folder_path to file_path
-            json.dump(self.to_dict(), file, indent = 4)
-        print(f"Wrote team file for {self.get_id()} to {file_path}\n")"""
-
 
     # Setter for the status of the team
     def set_random_status(self):

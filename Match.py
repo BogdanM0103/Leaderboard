@@ -1,7 +1,10 @@
+from tools import generate_random_team
+
+
 class Match:
     def __init__(self, team_1, team_2, winner):
         self.id = id
-        self.team_1 = team_1
+        self.team_1 = team1
         self.team_2 = team_2
         self.winner = None
         self.loser = None
