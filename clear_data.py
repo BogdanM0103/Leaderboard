@@ -18,17 +18,19 @@ def clear_file(file):
         print(f"Cleared {file} file")
 
 def clear_data():
-    players_folder = config['players_folder']
-    teams_folder = config['teams_folder']
+    players_folder = config['player_folder']
+    teams_folder = config['team_folder']
+    matches_folder = config['match_folder']
     names_used_file = config['names_used']
     id_players_file = config['id_players']
     id_teams_file = config['id_teams']
+    id_matches_file = config['id_matches']
 
     # Clear files in the Players Folder
-    for folder in [players_folder, teams_folder]:
+    for folder in [players_folder, teams_folder, matches_folder]:
         clear_folder(folder)
 
     # Clear names_used, id_players, id_teams
-    for filename in [names_used_file, id_players_file, id_teams_file]:
+    for filename in [names_used_file, id_players_file, id_teams_file, id_matches_file]:
         clear_file(filename)
 clear_data()

@@ -10,12 +10,19 @@ with open('data/config.json', "r") as config_file:
 NAMES_DATASET = config["name_dataset"]
 ID_PLAYERS = config["id_players"]
 ID_TEAMS = config["id_teams"]
+ID_MATCHES = config["id_matches"]
 NAMES_USED = config["names_used"]
 
 # function to generate unique id's
 def generate_id(for_what):
     # the file where id's are written upon creation
-    ID_FILE = ID_PLAYERS if for_what == "player" else ID_TEAMS
+    match for_what:
+        case "player":
+            ID_FILE = ID_PLAYERS
+        case "team":
+            ID_FILE = ID_TEAMS
+        case "match":
+            ID_FILE = ID_MATCHES
 
     # the set that stores existing id's
     existing_ids = set()
@@ -78,7 +85,7 @@ def generate_random_team():
     available_players = []
 
     # Load players from directory
-    players_folder = config['players_folder']
+    players_folder = config['player_folder']
     for filename in os.listdir(players_folder):
         if filename.endswith(".json"):
             file_path = os.path.join(players_folder, filename)

@@ -3,6 +3,7 @@
   "names_used": "data/names_used.txt",
   "id_players": "data/id_players.txt",
   "id_teams": "data/id_teams.txt",
+  "id_matches": "data/id_matches.txt",
   "player_folder": "data/players",
   "team_folder": "data/teams",
   "match_folder": "data/matches"
