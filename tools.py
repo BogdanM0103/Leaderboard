@@ -2,15 +2,17 @@ import json
 import os
 import random
 
+from Team import Team
+
 # Load configuration from config.json
 with open('data/config.json', "r") as config_file:
     config = json.load(config_file)
 
 # This is where the dataset of names is store
-NAMES_DATASET = config['names_dataset']
-ID_PLAYERS = config['id_players']
-ID_TEAMS = config['id_teams']
-NAMES_USED = config['names_used']
+NAMES_DATASET = config["names_dataset"]
+ID_PLAYERS = config["id_players"]
+ID_TEAMS = config["id_teams"]
+NAMES_USED = config["names_used"]
 
 # function to generate unique id's
 def generate_id(for_what):
@@ -96,3 +98,22 @@ def generate_random_team():
 
     # Return the selected players
     return selected_players
+
+def load_random_team():
+    teams_folder = config["teams_folder"]
+    if not teams_folder:
+        raise FileNotFoundError("No teams folder found!")
+    team_files = [f for f in os.listdir(teams_folder) if f.endswith(".json")]
+    if not team_files:
+        raise FileNotFoundError("No teams files found!")
+    random_team_file = random.choice(team_files)
+    random_team_path = os.path.join(teams_folder, random_team_file)
+    with open(random_team_path, "r") as file:
+        team_data = json.load(file)
+    team = Team.from_dict(team_data)
+    return team
+
+def have_common_players(team_1, team_2):
+    team_1_ids = {player["player_id"] for player in team_1}
+    team_2_ids = {player["player_id"] for player in team_2}
+    return team_1_ids.issubset(team_2_ids) or team_2_ids.issubset(team_1_ids)

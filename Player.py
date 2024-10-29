@@ -1,5 +1,3 @@
-
-
 from EntityBase import EntityBase
 from tools import generate_id, assign_random_name
 

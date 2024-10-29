@@ -26,6 +26,9 @@ class Team(EntityBase):
                 self.players.append(player)
             self.players.append(player.id)
 
+    def get_players(self):
+        return self.players
+
     # Setter for the status of the team
     def set_random_status(self):
         return random.choice(['win', 'loss'])
