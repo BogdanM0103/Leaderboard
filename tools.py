@@ -2,8 +2,6 @@ import json
 import os
 import random
 
-from Team import Team
-
 # Load configuration from config.json
 with open('data/config.json', "r") as config_file:
     config = json.load(config_file)
@@ -110,8 +108,7 @@ def load_random_team():
     random_team_path = os.path.join(teams_folder, random_team_file)
     with open(random_team_path, "r") as file:
         team_data = json.load(file)
-    team = Team.from_dict(team_data)
-    return team
+    return team_data
 
 def have_common_players(team_1, team_2):
     team_1_ids = {player["player_id"] for player in team_1}
