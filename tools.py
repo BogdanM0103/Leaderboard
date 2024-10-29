@@ -7,7 +7,7 @@ with open('data/config.json', "r") as config_file:
     config = json.load(config_file)
 
 # This is where the dataset of names is store
-NAMES_DATASET = config["names_dataset"]
+NAMES_DATASET = config["name_dataset"]
 ID_PLAYERS = config["id_players"]
 ID_TEAMS = config["id_teams"]
 NAMES_USED = config["names_used"]
@@ -98,7 +98,7 @@ def generate_random_team():
     return selected_players
 
 def load_random_team():
-    teams_folder = config["teams_folder"]
+    teams_folder = config["team_folder"]
     if not teams_folder:
         raise FileNotFoundError("No teams folder found!")
     team_files = [f for f in os.listdir(teams_folder) if f.endswith(".json")]
@@ -111,6 +111,6 @@ def load_random_team():
     return team_data
 
 def have_common_players(team_1, team_2):
-    team_1_ids = {player["player_id"] for player in team_1}
-    team_2_ids = {player["player_id"] for player in team_2}
+    team_1_ids = {player["player_id"] for player in team_1["team_players"]}
+    team_2_ids = {player["player_id"] for player in team_2["team_players"]}
     return team_1_ids.issubset(team_2_ids) or team_2_ids.issubset(team_1_ids)

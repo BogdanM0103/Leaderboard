@@ -42,7 +42,7 @@ class EntityBase(ABC):
         return base_dict
 
     def write_file(self):
-        folder = config[f"{self.entity_type}s_folder"]
+        folder = config[f"{self.entity_type}_folder"]
         if not folder:
             os.makedirs(folder)
         file = os.path.join(folder, f"{self.id}.json")
